@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:myapp/app/controllers/auth_controller.dart';
-
+import 'package:myapp/app/routes/app_pages.dart';
 import '../controllers/signup_controller.dart';
 
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:1832883682.
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:4122136343.
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:3419894950.
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:1847811744.
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:3508663017.
 class SignupView extends GetView<SignupController> {
   final cAuth = Get.find<AuthController>();
 
@@ -17,53 +11,98 @@ class SignupView extends GetView<SignupController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'SignUp',
-          style: TextStyle(
-              fontSize: 30, color: Colors.white, fontWeight: FontWeight.bold),
+      body: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.white, Colors.white],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
         ),
-        backgroundColor: Colors.blue,
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.network(
-              "https://static-00.iconduck.com/assets.00/android-plain-wordmark-icon-256x256-ppoejbtc.png",
-              height: 100,
-            ),
-            const SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
-                controller: controller.cEmail,
-                decoration: const InputDecoration(labelText: 'Email'),
+        child: Center(
+          child: ListView(
+            shrinkWrap: true,
+            children: [
+              const SizedBox(height: 80),
+              Center(
+                child: Image.asset(
+                  '../assets/images/protein.jpg', // Ganti dengan path gambar lokal
+                  height: 100,
+                  width: 100,
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
+              const SizedBox(height: 20),
+              const Text(
+                "Sign Up",
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                  fontSize: 35,
+                  color: Colors.black,
+                ),
+              ),
+              const SizedBox(height: 10),
+              TextField(
+                controller: controller.cEmail,
+                decoration: InputDecoration(
+                  labelText: "Email",
+                  prefixIcon: Icon(Icons.email),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              TextField(
                 controller: controller.cPass,
                 obscureText: true,
-                decoration: const InputDecoration(labelText: 'Password'),
+                decoration: InputDecoration(
+                  labelText: "Password",
+                  prefixIcon: Icon(Icons.lock),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
               ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                cAuth.signup(controller.cEmail.text, controller.cPass.text);
-              },
-              child: const Text(
-                'Sign Up',
-                style: TextStyle(fontSize: 20),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  cAuth.signup(controller.cEmail.text, controller.cPass.text);
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 10, 255, 19),
+                  foregroundColor: Colors.black,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                ),
+                child: const Text(
+                  "Sign Up",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.normal,  // Teks tidak bold
+                  ),
+                ),
               ),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromARGB(255, 33, 98, 226),
-                foregroundColor: Colors.white,
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("Already have an account?"),
+                  TextButton(
+                    onPressed: () {
+                      Get.toNamed(Routes.LOGIN);
+                    },
+                    child: const Text(
+                      "Login",
+                      style: TextStyle(color: Colors.green),
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

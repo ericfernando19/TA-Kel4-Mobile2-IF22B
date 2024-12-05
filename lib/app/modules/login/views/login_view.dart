@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:myapp/app/controllers/auth_controller.dart';
 import 'package:myapp/app/routes/app_pages.dart';
@@ -13,73 +12,109 @@ class LoginView extends GetView<LoginController> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.all(10),
-        child: ListView(
-          children: [
-            SizedBox(
-              height: 80,
-            ),
-            Image.network(
-              "https://static-00.iconduck.com/assets.00/android-plain-wordmark-icon-256x256-ppoejbtc.png",
-              height: 100,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            TextField(
-              controller: controller.cEmail,
-              decoration: InputDecoration(
-                labelText: "Email",
-              ),
-            ),
-            TextField(
-              controller: controller.cPass,
-              obscureText: true,
-              decoration: InputDecoration(
-                labelText: "Password",
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                cAuth.login(controller.cEmail.text, controller.cPass.text);
-              },
-              child: Text("Login"),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromARGB(255, 33, 98, 226),
-                foregroundColor: Colors.white,
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: TextButton(
-                child: Text("Reset Password"),
-                onPressed: () {
-                  Get.offAllNamed(Routes.RESET_PASSWORD);
-                },
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text("Belum Punya Akun ?"),
-                TextButton(
-                  onPressed: () {
-                    Get.toNamed(Routes.SIGNUP);
-                  },
-                  child: Text("Daftar Disini"),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.white, Colors.white],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: Center(
+          child: ListView(
+            shrinkWrap: true,
+            children: [
+              const SizedBox(height: 80),
+              Center(
+                child: Image.asset(
+                  '../assets/images/protein.jpg', // Ganti dengan path gambar lokal
+                  height: 100,
+                  width: 100,
                 ),
-              ],
-            ),
-          ],
+              ),
+              const SizedBox(height: 50),
+              const Text(
+                "Login",
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                  fontSize: 35,
+                  color: Colors.black,
+                ),
+              ),
+              const SizedBox(height: 10),
+              TextField(
+                controller: controller.cEmail,
+                decoration: InputDecoration(
+                  labelText: "Email",
+                  prefixIcon: Icon(Icons.email),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+              TextField(
+                controller: controller.cPass,
+                obscureText: true,
+                decoration: InputDecoration(
+                  labelText: "Password",
+                  prefixIcon: Icon(Icons.lock),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 30),
+              ElevatedButton(
+                onPressed: () {
+                  cAuth.login(controller.cEmail.text, controller.cPass.text);
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 10, 255, 19),
+                  foregroundColor: Colors.black,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                ),
+                child: const Text(
+                  "Login",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.normal, // Teks tidak bold
+                  ),
+                ),
+              ),
+              const SizedBox(height: 30),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("Don't have an account?"),
+                  TextButton(
+                    onPressed: () {
+                      Get.toNamed(Routes.SIGNUP);
+                    },
+                    child: const Text(
+                      "Sign Up",
+                      style: TextStyle(color: Colors.green),
+                    ),
+                  ),
+                ],
+              ),
+              Align(
+                alignment: Alignment.center,
+                child: TextButton(
+                  onPressed: () {
+                    Get.offAllNamed(Routes.RESET_PASSWORD);
+                  },
+                  child: const Text(
+                    "Forgot Password?",
+                    style: TextStyle(color: Colors.green),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

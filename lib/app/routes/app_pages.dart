@@ -1,13 +1,13 @@
 import 'package:get/get.dart';
 
-import '../modules/dosen/bindings/dosen_binding.dart';
-import '../modules/dosen/views/dosen_view.dart';
+import '../modules/dashboard/bindings/dashboard_binding.dart';
+import '../modules/dashboard/views/dashboard_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/input/bindings/input_binding.dart';
+import '../modules/input/views/input_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
-import '../modules/mahasiswa/bindings/mahasiswa_binding.dart';
-import '../modules/mahasiswa/views/mahasiswa_view.dart';
 import '../modules/reset_password/bindings/reset_password_binding.dart';
 import '../modules/reset_password/views/reset_password_view.dart';
 import '../modules/signup/bindings/signup_binding.dart';
@@ -42,14 +42,14 @@ class AppPages {
       binding: ResetPasswordBinding(),
     ),
     GetPage(
-      name: _Paths.MAHASISWA,
-      page: () => MahasiswaView(),
-      binding: MahasiswaBinding(),
+      name: _Paths.INPUT,
+      page: () => const InputView(),
+      binding: InputBinding(),
     ),
     GetPage(
-      name: _Paths.DOSEN,
-      page: () =>DosenView(),
-      binding: DosenBinding(),
+      name: _Paths.DASHBOARD,
+      page: () => const DashboardView(),
+      binding: DashboardBinding(),
     ),
   ];
 }
