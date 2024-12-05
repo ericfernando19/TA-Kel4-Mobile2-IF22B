@@ -44,34 +44,33 @@ class InputView extends GetView<InputController> {
               ),
             ),
             const SizedBox(height: 16),
-
-            // Input Field 3: Kategori (Dropdown)
-            DropdownButtonFormField<String>(
-              value: controller.selectedCategory.isEmpty
-                  ? null
-                  : controller.selectedCategory,
-              decoration: InputDecoration(
-                labelText: 'Kategori',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20), // Add border radius
-                ),
-              ),
-              items: controller.categories
-                  .map((category) => DropdownMenuItem<String>(
-                        value: category,
-                        child: Text(category),
-                      ))
-                  .toList(),
-              onChanged: (value) {
-                controller.selectedCategory = value ?? '';
-              },
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please select a category';
-                }
-                return null;
-              },
-            ),
+            // // Input Field 3: Kategori (Dropdown)
+            // DropdownButtonFormField<String>(
+            //   value: controller.selectedCategory.isEmpty
+            //       ? null
+            //       : controller.selectedCategory,
+            //   decoration: InputDecoration(
+            //     labelText: 'Kategori',
+            //     border: OutlineInputBorder(
+            //       borderRadius: BorderRadius.circular(20), // Add border radius
+            //     ),
+            //   ),
+            //   items: controller.categories
+            //       .map((category) => DropdownMenuItem<String>(
+            //             value: category,
+            //             child: Text(category),
+            //           ))
+            //       .toList(),
+            //   onChanged: (value) {
+            //     controller.selectedCategory = value ?? '';
+            //   },
+            //   validator: (value) {
+            //     if (value == null || value.isEmpty) {
+            //       return 'Please select a category';
+            //     }
+            //     return null;
+            //   },
+            // ),
             const SizedBox(height: 32),
 
             // Save Button with green background and styling

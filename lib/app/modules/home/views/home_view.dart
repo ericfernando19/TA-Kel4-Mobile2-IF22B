@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:myapp/app/controllers/auth_controller.dart';
 import 'package:myapp/app/modules/dashboard/views/dashboard_view.dart';
+import 'package:myapp/app/modules/history/views/history_view.dart';
 import 'package:myapp/app/modules/input/views/input_view.dart';
 import '../controllers/home_controller.dart';
 
@@ -32,7 +33,7 @@ class _HomeViewState extends State<HomeView> {
   final List<Map> _fragment = [
     {'title': 'Home', 'view': DashboardView()},
     {'title': 'Input', 'view': InputView()},
-    {'title': 'History', 'view': InputView()},
+    {'title': 'History', 'view': HistoryView()},
     {'title': 'Profile', 'view': InputView()},
   ];
 
