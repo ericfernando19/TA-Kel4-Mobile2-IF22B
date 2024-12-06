@@ -12,6 +12,7 @@ abstract class Routes {
   static const INPUT = _Paths.INPUT;
   static const DASHBOARD = _Paths.DASHBOARD;
   static const HISTORY = _Paths.HISTORY;
+  static const PROFILE = _Paths.PROFILE;
 }
 
 abstract class _Paths {
@@ -25,4 +26,5 @@ abstract class _Paths {
   static const INPUT = '/input';
   static const DASHBOARD = '/dashboard';
   static const HISTORY = '/history';
+  static const PROFILE = '/profile';
 }

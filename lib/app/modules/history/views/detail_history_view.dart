@@ -1,37 +1,29 @@
 import 'package:flutter/material.dart';
 
 class DetailHistoryView extends StatelessWidget {
-  final Map<String, String> detail;
+  final String title;
+  final String description;
 
-  const DetailHistoryView({super.key, required this.detail});
+  const DetailHistoryView({
+    super.key,
+    required this.title,
+    required this.description,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Detail History'),
+        title: Text(title),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Nama Makanan: ${detail['name']}',
-              style: const TextStyle(fontSize: 18),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              'Berat Dikonsumsi: ${detail['weight']}',
-              style: const TextStyle(fontSize: 18),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              'Kategori: ${detail['category']}',
-              style: const TextStyle(fontSize: 18),
-            ),
-          ],
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Text(
+            description,
+            style: const TextStyle(fontSize: 18.0),
+          ),
         ),
       ),
     );

@@ -1,23 +1,17 @@
 import 'package:get/get.dart';
 
 class HistoryController extends GetxController {
-  //TODO: Implement HistoryController
+  // List data history
+  final historyData = <Map<String, String>>[
+    {'name': 'Apel', 'weight': '0.5 kg', 'category': 'Protein Nabati'},
+    {'name': 'Ayam', 'weight': '1.2 kg', 'category': 'Protein Hewani'},
+    {'name': 'Susu', 'weight': '0.8 liter', 'category': 'Protein Hewani'},
+    {'name': 'Tahu', 'weight': '0.3 kg', 'category': 'Protein Nabati'},
+    {'name': 'Tempe', 'weight': '0.4 kg', 'category': 'Protein Nabati'},
+  ].obs;
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  // Ambil detail berdasarkan indeks
+  Map<String, String> getDetail(int index) {
+    return historyData[index];
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }
