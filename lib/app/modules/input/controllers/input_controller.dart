@@ -5,13 +5,13 @@ class InputController extends GetxController {
   // Controller untuk input teks
   final field1Controller = TextEditingController(); // Nama Makanan
   final field2Controller = TextEditingController(); // Berat Dikonsumsi
-  
+
   // Daftar kategori
   final List<String> categories = [
     'Protein Hewani',
     'Protein Nabati',
   ];
-  
+
   // Kategori yang dipilih (reaktif)
   var selectedCategory = ''.obs;
 
