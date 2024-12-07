@@ -7,7 +7,7 @@ class AuthController extends GetxController {
 
   Stream<User?> get streamAuthStatus => auth.authStateChanges();
 
-  void signup(String emailAddress, String password) async {
+  void signup(String emailAddress, String password, String text) async {
     try {
       UserCredential myUser = await auth.createUserWithEmailAndPassword(
         email: emailAddress,

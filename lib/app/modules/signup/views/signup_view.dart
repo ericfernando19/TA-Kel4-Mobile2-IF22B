@@ -7,13 +7,14 @@ import '../controllers/signup_controller.dart';
 class SignupView extends GetView<SignupController> {
   final cAuth = Get.find<AuthController>();
 
-  SignupView({Key? key}) : super(key: key);
+  SignupView({super.key});
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [Colors.white, Colors.white],
             begin: Alignment.topCenter,
@@ -27,7 +28,7 @@ class SignupView extends GetView<SignupController> {
               const SizedBox(height: 80),
               Center(
                 child: Image.asset(
-                  '../assets/images/protein.jpg', // Ganti dengan path gambar lokal
+                  '../assets/images/protein.jpg',
                   height: 100,
                   width: 100,
                 ),
@@ -43,10 +44,21 @@ class SignupView extends GetView<SignupController> {
               ),
               const SizedBox(height: 10),
               TextField(
+                controller: controller.cUsername,
+                decoration: InputDecoration(
+                  labelText: "Username",
+                  prefixIcon: const Icon(Icons.person),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              TextField(
                 controller: controller.cEmail,
                 decoration: InputDecoration(
                   labelText: "Email",
-                  prefixIcon: Icon(Icons.email),
+                  prefixIcon: const Icon(Icons.email),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -58,7 +70,7 @@ class SignupView extends GetView<SignupController> {
                 obscureText: true,
                 decoration: InputDecoration(
                   labelText: "Password",
-                  prefixIcon: Icon(Icons.lock),
+                  prefixIcon: const Icon(Icons.lock),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -67,7 +79,22 @@ class SignupView extends GetView<SignupController> {
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  cAuth.signup(controller.cEmail.text, controller.cPass.text);
+                  if (controller.cUsername.text.isNotEmpty &&
+                      controller.cEmail.text.isNotEmpty &&
+                      controller.cPass.text.isNotEmpty) {
+                    cAuth.signup(
+                      controller.cEmail.text,
+                      controller.cPass.text,
+                      controller.cUsername.text,
+                    );
+                  } else {
+                    Get.snackbar(
+                      'Error',
+                      'Semua field harus diisi',
+                      backgroundColor: Colors.red,
+                      colorText: Colors.white,
+                    );
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromARGB(255, 10, 255, 19),
@@ -81,7 +108,7 @@ class SignupView extends GetView<SignupController> {
                   "Sign Up",
                   style: TextStyle(
                     fontSize: 22,
-                    fontWeight: FontWeight.normal,  // Teks tidak bold
+                    fontWeight: FontWeight.normal,
                   ),
                 ),
               ),
