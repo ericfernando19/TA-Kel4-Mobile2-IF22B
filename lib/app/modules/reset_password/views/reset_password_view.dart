@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:myapp/app/controllers/auth_controller.dart';
+import 'package:myapp/app/routes/app_pages.dart';  // Tambahkan import ini
 import '../controllers/reset_password_controller.dart';
 
 class ResetPasswordView extends GetView<ResetPasswordController> {
@@ -12,7 +13,7 @@ class ResetPasswordView extends GetView<ResetPasswordController> {
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
-          onPressed: () => Get.back(),
+          onPressed: () => Get.offAllNamed(Routes.LOGIN),  // Ubah ini
         ),
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -24,11 +25,10 @@ class ResetPasswordView extends GetView<ResetPasswordController> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const SizedBox(height: 20),
-              // Icon for reset password
               Icon(
                 Icons.lock_reset,
                 size: 80,
-                color: Colors.blue,
+                color: const Color.fromARGB(255, 9, 248, 41),
               ),
               const SizedBox(height: 24),
               const Text(
@@ -36,12 +36,11 @@ class ResetPasswordView extends GetView<ResetPasswordController> {
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  color: Colors.blue,
+                  color: Color.fromARGB(255, 0, 252, 34),
                 ),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 16),
-              // Informative text
               const Text(
                 'Masukan Email Anda Untuk Melakukan Reset Password.',
                 style: TextStyle(
@@ -51,7 +50,6 @@ class ResetPasswordView extends GetView<ResetPasswordController> {
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 32),
-              // Email TextField
               TextField(
                 controller: controller.cEmail,
                 decoration: InputDecoration(
@@ -62,13 +60,12 @@ class ResetPasswordView extends GetView<ResetPasswordController> {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: Colors.blue, width: 2),
+                    borderSide: BorderSide(color: const Color.fromARGB(255, 0, 255, 0), width: 2),
                   ),
                 ),
                 keyboardType: TextInputType.emailAddress,
               ),
               const SizedBox(height: 24),
-              // Reset Password Button
               ElevatedButton(
                 onPressed: () {
                   if (controller.cEmail.text.isNotEmpty) {
@@ -83,7 +80,7 @@ class ResetPasswordView extends GetView<ResetPasswordController> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 33, 98, 226),
+                  backgroundColor: const Color.fromARGB(255, 7, 255, 7),
                   foregroundColor: Colors.white,
                   padding: EdgeInsets.symmetric(vertical: 15),
                   shape: RoundedRectangleBorder(
@@ -96,13 +93,12 @@ class ResetPasswordView extends GetView<ResetPasswordController> {
                 ),
               ),
               const SizedBox(height: 16),
-              // Back to Login Button
               TextButton(
-                onPressed: () => Get.back(),
+                onPressed: () => Get.offAllNamed(Routes.LOGIN),  // Ubah ini
                 child: const Text(
                   'Back to Login',
                   style: TextStyle(
-                    color: Colors.blue,
+                    color: Color.fromARGB(255, 0, 255, 34),
                     fontSize: 16,
                   ),
                 ),
