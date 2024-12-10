@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/profile_controller.dart';
+import 'ubah_add_view.dart'; // Import halaman UbahPasswordView
 
 class ProfileView extends GetView<ProfileController> {
   const ProfileView({super.key});
@@ -62,12 +63,42 @@ class ProfileView extends GetView<ProfileController> {
           Expanded(
             child: ListView(
               children: [
-                _buildMenuItem(Icons.person, 'Edit Data Diri'),
-                _buildMenuItem(Icons.lock, 'Ubah Password'),
-                _buildMenuItem(Icons.star, 'Beri Rating Aplikasi'),
-                _buildMenuItem(Icons.phone, 'Kontak Kami'),
                 _buildMenuItem(
-                    Icons.info, 'Ketentuan Layanan & Kebijakan Privasi'),
+                  icon: Icons.person,
+                  title: 'Edit Data Diri',
+                  onTap: () {
+                    // Aksi untuk Edit Data Diri
+                  },
+                ),
+                _buildMenuItem(
+                  icon: Icons.lock,
+                  title: 'Ubah Password',
+                  onTap: () {
+                    // Navigasi ke halaman Ubah Password
+                    Get.to(() => const UbahAddView());
+                  },
+                ),
+                _buildMenuItem(
+                  icon: Icons.star,
+                  title: 'Beri Rating Aplikasi',
+                  onTap: () {
+                    // Aksi untuk Beri Rating
+                  },
+                ),
+                _buildMenuItem(
+                  icon: Icons.phone,
+                  title: 'Kontak Kami',
+                  onTap: () {
+                    // Aksi untuk Kontak Kami
+                  },
+                ),
+                _buildMenuItem(
+                  icon: Icons.info,
+                  title: 'Ketentuan Layanan & Kebijakan Privasi',
+                  onTap: () {
+                    // Aksi untuk Ketentuan Layanan
+                  },
+                ),
               ],
             ),
           ),
@@ -93,14 +124,16 @@ class ProfileView extends GetView<ProfileController> {
     );
   }
 
-  Widget _buildMenuItem(IconData icon, String title) {
+  Widget _buildMenuItem({
+    required IconData icon,
+    required String title,
+    required VoidCallback onTap,
+  }) {
     return ListTile(
       leading: Icon(icon, color: Colors.grey[700]),
       title: Text(title),
       trailing: const Icon(Icons.chevron_right, color: Colors.grey),
-      onTap: () {
-        // Tambahkan aksi yang sesuai
-      },
+      onTap: onTap,
     );
   }
 }
