@@ -50,19 +50,21 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyA60p2bP9MwGwzn-W9Dca363W1TofM275E',
-    appId: '1:520607727993:android:e8ba20e300d07cf453efa8',
-    messagingSenderId: '520607727993',
-    projectId: 'latihan-22312093',
-    storageBucket: 'latihan-22312093.appspot.com',
+    apiKey: 'AIzaSyA6rBXXMXWcu5qPMw_yuHpOt9DABXEB5bM',
+    appId: '1:12106934655:android:df2850593e8eea00d8924a',
+    messagingSenderId: '12106934655',
+    projectId: 'protrack-1a168',
+    storageBucket: 'protrack-1a168.firebasestorage.app',
   );
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDK2erm_IgnsyaabX1_QjbtkYL-pqtaQkc',
-    appId: '1:520607727993:web:cb27d47561d0c68353efa8',
-    messagingSenderId: '520607727993',
-    projectId: 'latihan-22312093',
-    authDomain: 'latihan-22312093.firebaseapp.com',
-    storageBucket: 'latihan-22312093.appspot.com',
+    apiKey: 'AIzaSyDfv7t-e6y7UC2ddpRgVGKv9atNkYRPfMk',
+    appId: '1:12106934655:web:4f8d188593134d19d8924a',
+    messagingSenderId: '12106934655',
+    projectId: 'protrack-1a168',
+    authDomain: 'protrack-1a168.firebaseapp.com',
+    storageBucket: 'protrack-1a168.firebasestorage.app',
+    measurementId: 'G-53GLYSX02S',
   );
+
 }
