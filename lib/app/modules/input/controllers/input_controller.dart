@@ -13,7 +13,7 @@ class InputController extends GetxController {
   ];
 
   // Kategori yang dipilih (reaktif)
-  var selectedCategory = ''.obs;
+  var selectedCategory = ''.obs; // Gunakan RxString untuk membuatnya reaktif
 
   // Data history (reaktif)
   var historyData = <Map<String, String>>[].obs;
@@ -28,13 +28,13 @@ class InputController extends GetxController {
       historyData.add({
         'name': field1Controller.text,
         'weight': field2Controller.text,
-        'category': selectedCategory.value,
+        'category': selectedCategory.value, // Gunakan .value untuk mengambil nilai RxString
       });
 
       // Reset input
       field1Controller.clear();
       field2Controller.clear();
-      selectedCategory.value = '';
+      selectedCategory.value = ''; // Reset nilai kategori
 
       // Kembali ke halaman sebelumnya
       Get.back();

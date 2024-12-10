@@ -8,8 +8,7 @@ class InputView extends GetView<InputController> {
 
   @override
   Widget build(BuildContext context) {
-    // Controller untuk menangani input data
-    final InputController controller = Get.put(InputController());
+    final InputController controller = Get.put(InputController()); // Controller tetap
 
     return Scaffold(
       appBar: AppBar(
@@ -27,7 +26,7 @@ class InputView extends GetView<InputController> {
               decoration: InputDecoration(
                 labelText: 'Nama Makanan',
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20), // Add border radius
+                  borderRadius: BorderRadius.circular(20),
                 ),
               ),
             ),
@@ -39,41 +38,36 @@ class InputView extends GetView<InputController> {
               decoration: InputDecoration(
                 labelText: 'Berat Dikonsumsi',
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20), // Add border radius
+                  borderRadius: BorderRadius.circular(20),
                 ),
               ),
             ),
             const SizedBox(height: 16),
-            // // Input Field 3: Kategori (Dropdown)
-            // DropdownButtonFormField<String>(
-            //   value: controller.selectedCategory.isEmpty
-            //       ? null
-            //       : controller.selectedCategory,
-            //   decoration: InputDecoration(
-            //     labelText: 'Kategori',
-            //     border: OutlineInputBorder(
-            //       borderRadius: BorderRadius.circular(20), // Add border radius
-            //     ),
-            //   ),
-            //   items: controller.categories
-            //       .map((category) => DropdownMenuItem<String>(
-            //             value: category,
-            //             child: Text(category),
-            //           ))
-            //       .toList(),
-            //   onChanged: (value) {
-            //     controller.selectedCategory = value ?? '';
-            //   },
-            //   validator: (value) {
-            //     if (value == null || value.isEmpty) {
-            //       return 'Please select a category';
-            //     }
-            //     return null;
-            //   },
-            // ),
+
+            // Tambahkan Dropdown Kategori
+            Obx(() => DropdownButtonFormField<String>(
+                  value: controller.selectedCategory.value.isEmpty
+                      ? null
+                      : controller.selectedCategory.value,
+                  decoration: InputDecoration(
+                    labelText: 'Kategori',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                  items: controller.categories
+                      .map((category) => DropdownMenuItem<String>(
+                            value: category,
+                            child: Text(category),
+                          ))
+                      .toList(),
+                  onChanged: (value) {
+                    controller.selectedCategory.value = value ?? '';
+                  },
+                )),
             const SizedBox(height: 32),
 
-            // Save Button with green background and styling
+            // Tombol Simpan tetap
             Align(
               alignment: Alignment.centerRight,
               child: ElevatedButton(
@@ -81,17 +75,16 @@ class InputView extends GetView<InputController> {
                   controller.saveData();
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green, // Green background color
-                  foregroundColor: Colors.black, // Text color on button
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 54, vertical: 12), // Padding for button
+                  backgroundColor: Colors.green,
+                  foregroundColor: Colors.black,
+                  padding: const EdgeInsets.symmetric(horizontal: 54, vertical: 12),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(17), // Rounded corners
+                    borderRadius: BorderRadius.circular(17),
                   ),
                 ),
                 child: const Text(
                   'Save',
-                  style: TextStyle(fontSize: 19), // Font size
+                  style: TextStyle(fontSize: 19),
                 ),
               ),
             ),
