@@ -7,12 +7,14 @@ import '../controllers/reset_password_controller.dart';
 class ResetPasswordView extends GetView<ResetPasswordController> {
   final cAuth = Get.find<AuthController>();
 
+   ResetPasswordView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () => Get.offAllNamed(Routes.LOGIN),  // Ubah ini
         ),
         backgroundColor: Colors.transparent,
@@ -25,10 +27,10 @@ class ResetPasswordView extends GetView<ResetPasswordController> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const SizedBox(height: 20),
-              Icon(
+              const Icon(
                 Icons.lock_reset,
                 size: 80,
-                color: const Color.fromARGB(255, 9, 248, 41),
+                color: Color.fromARGB(255, 9, 248, 41),
               ),
               const SizedBox(height: 24),
               const Text(
@@ -54,13 +56,13 @@ class ResetPasswordView extends GetView<ResetPasswordController> {
                 controller: controller.cEmail,
                 decoration: InputDecoration(
                   labelText: "Email",
-                  prefixIcon: Icon(Icons.email_outlined),
+                  prefixIcon: const Icon(Icons.email_outlined),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: const Color.fromARGB(255, 0, 255, 0), width: 2),
+                    borderSide: const BorderSide(color: Color.fromARGB(255, 0, 255, 0), width: 2),
                   ),
                 ),
                 keyboardType: TextInputType.emailAddress,
@@ -82,7 +84,7 @@ class ResetPasswordView extends GetView<ResetPasswordController> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromARGB(255, 7, 255, 7),
                   foregroundColor: Colors.white,
-                  padding: EdgeInsets.symmetric(vertical: 15),
+                  padding: const EdgeInsets.symmetric(vertical: 15),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),

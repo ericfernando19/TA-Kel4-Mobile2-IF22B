@@ -8,12 +8,14 @@ import '../controllers/login_controller.dart';
 class LoginView extends GetView<LoginController> {
   final cAuth = Get.find<AuthController>();
 
+  LoginView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [Colors.white, Colors.white],
             begin: Alignment.topCenter,
@@ -46,7 +48,7 @@ class LoginView extends GetView<LoginController> {
                 controller: controller.cEmail,
                 decoration: InputDecoration(
                   labelText: "Email",
-                  prefixIcon: Icon(Icons.email),
+                  prefixIcon: const Icon(Icons.email),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -58,7 +60,7 @@ class LoginView extends GetView<LoginController> {
                 obscureText: true,
                 decoration: InputDecoration(
                   labelText: "Password",
-                  prefixIcon: Icon(Icons.lock),
+                  prefixIcon: const Icon(Icons.lock),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),

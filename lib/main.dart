@@ -22,6 +22,8 @@ class MyApp extends StatelessWidget {
     permanent: true,
   );
 
+   MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<User?>(
@@ -37,7 +39,7 @@ class MyApp extends StatelessWidget {
             getPages: AppPages.routes,
           );
         }
-        return Loading();
+        return const Loading();
       },
     );
   }

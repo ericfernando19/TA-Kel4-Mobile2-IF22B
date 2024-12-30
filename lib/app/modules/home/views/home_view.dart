@@ -32,10 +32,10 @@ class _HomeViewState extends State<HomeView> {
   int _index = 0;
 
   final List<Map> _fragment = [
-    {'title': 'Home', 'view': DashboardView()},
-    {'title': 'Input', 'view': InputView()},
-    {'title': 'History', 'view': HistoryView()},
-    {'title': 'Profile', 'view': ProfileView()},
+    {'title': 'Home', 'view': const DashboardView()},
+    {'title': 'Input', 'view': const InputView()},
+    {'title': 'History', 'view': const HistoryView()},
+    {'title': 'Profile', 'view': const ProfileView()},
   ];
 
   @override

@@ -27,17 +27,17 @@ class ProfileView extends GetView<ProfileController> {
                 end: Alignment.bottomRight,
               ),
             ),
-            child: Row(
+            child: const Row(
               children: [
                 CircleAvatar(
                   radius: 40,
                   backgroundImage: NetworkImage(
                       'https://via.placeholder.com/150'), // Ganti dengan URL gambar Anda
                 ),
-                const SizedBox(width: 16),
+                SizedBox(width: 16),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text(
                       'Galih Pribadi Utomo',
                       style: TextStyle(
