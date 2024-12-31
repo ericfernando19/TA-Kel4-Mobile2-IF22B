@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/profile_controller.dart';
+import 'ubah_add_view.dart';
 
 class ProfileView extends GetView<ProfileController> {
   const ProfileView({super.key});
@@ -29,7 +30,8 @@ class ProfileView extends GetView<ProfileController> {
               children: [
                 CircleAvatar(
                   radius: 40,
-                  backgroundImage: NetworkImage('https://via.placeholder.com/150'),
+                  backgroundImage:
+                      NetworkImage('https://via.placeholder.com/150'),
                 ),
                 SizedBox(width: 16),
                 Column(
@@ -62,7 +64,7 @@ class ProfileView extends GetView<ProfileController> {
                 _buildMenuItem(
                   icon: Icons.person_outline,
                   title: 'Edit Data Diri',
-                  onTap: () {},
+                  onTap: () => _showEditProfileDialog(context),
                 ),
                 _buildMenuItem(
                   icon: Icons.lock_outline,
@@ -100,6 +102,46 @@ class ProfileView extends GetView<ProfileController> {
         title: Text(title),
         trailing: const Icon(Icons.chevron_right, color: Colors.grey),
         onTap: onTap,
+      ),
+    );
+  }
+
+  void _showEditProfileDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Edit Data Diri'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(
+              decoration: const InputDecoration(
+                labelText: 'Nama',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 16),
+            TextField(
+              decoration: const InputDecoration(
+                labelText: 'ID',
+                border: OutlineInputBorder(),
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Batal'),
+          ),
+          ElevatedButton(
+            onPressed: () => Navigator.pop(context),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.green,
+            ),
+            child: const Text('Simpan'),
+          ),
+        ],
       ),
     );
   }
