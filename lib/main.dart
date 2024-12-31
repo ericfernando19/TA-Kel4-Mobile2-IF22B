@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:myapp/app/controllers/auth_controller.dart';
+import 'package:myapp/app/modules/input/controllers/input_controller.dart';
 import 'package:myapp/app/utils/loading.dart';
 
 import 'app/routes/app_pages.dart';
@@ -11,23 +12,23 @@ import 'app/routes/app_pages.dart';
 import 'firebase_options.dart';
 
 void main() async {
-  WidgetsFlutterBinding();
+  WidgetsFlutterBinding.ensureInitialized(); // Perbaikan di sini
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  // Inisialisasi AuthController
+  Get.put(AuthController(), permanent: true);
+
+  // Inisialisasi InputController
+  Get.put(InputController(), permanent: true); // Inisialisasi InputController
+
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final CAuth = Get.put(
-    AuthController(),
-    permanent: true,
-  );
-
-   MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<User?>(
-      stream: CAuth.streamAuthStatus,
+      stream: Get.find<AuthController>().streamAuthStatus,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.active) {
           return GetMaterialApp(

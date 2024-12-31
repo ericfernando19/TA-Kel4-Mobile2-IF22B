@@ -29,13 +29,13 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   final cAuth = Get.find<AuthController>();
-  int _index = 0;
+  int _index = 1;
 
   final List<Map> _fragment = [
-    {'title': 'Home', 'view': const DashboardView()},
-    {'title': 'Input', 'view': const InputView()},
-    {'title': 'History', 'view': const HistoryView()},
-    {'title': 'Profile', 'view': const ProfileView()},
+    {'title': 'Home', 'view': DashboardView()},
+    {'title': 'Input', 'view': InputView()},
+    {'title': 'History', 'view': HistoryView()},
+    {'title': 'Profile', 'view': ProfileView()},
   ];
 
   @override

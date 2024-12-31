@@ -46,14 +46,14 @@ class AppPages {
       binding: ResetPasswordBinding(),
     ),
     GetPage(
-      name: _Paths.INPUT,
-      page: () => const InputView(),
-      binding: InputBinding(),
-    ),
-    GetPage(
       name: _Paths.DASHBOARD,
       page: () => const DashboardView(),
       binding: DashboardBinding(),
+    ),
+    GetPage(
+      name: _Paths.INPUT,
+      page: () => InputView(),
+      binding: InputBinding(),
     ),
     GetPage(
       name: _Paths.HISTORY,
