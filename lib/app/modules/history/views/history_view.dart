@@ -1,90 +1,79 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'detail_history_view.dart';
 import '../controllers/history_controller.dart';
 
 class HistoryView extends GetView<HistoryController> {
-  const HistoryView({super.key});
+  const HistoryView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('History'),
+        title: const Text('Riwayat Makanan'),
         centerTitle: true,
+        backgroundColor: const Color.fromARGB(255, 0, 255, 8),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: ListView(
-          children: [
-            _buildHistoryCard(
-              context: context,
-              color: Colors.greenAccent.shade100,
-              icon: Icons.eco,
-              title: 'Desk 1',
-              description: 'Deskripsi 1',
-            ),
-            _buildHistoryCard(
-              context: context,
-              color: Colors.yellow.shade100,
-              icon: Icons.person,
-              title: 'Desk 2',
-              description: 'Deskripsi 2',
-            ),
-            _buildHistoryCard(
-              context: context,
-              color: Colors.pink.shade100,
-              icon: Icons.person_outline,
-              title: 'Desk 3',
-              description: 'Deskripsi 3',
-            ),
-            _buildHistoryCard(
-              context: context,
-              color: Colors.blue.shade100,
-              icon: Icons.person_pin,
-              title: 'Desk 4',
-              description: 'Deskripsi 4',
-            ),
-            _buildHistoryCard(
-              context: context,
-              color: Colors.grey.shade300,
-              icon: Icons.person_add,
-              title: 'Desk 5',
-              description: 'Deskripsi 5',
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildHistoryCard({
-    required BuildContext context,
-    required Color color,
-    required IconData icon,
-    required String title,
-    required String description,
-  }) {
-    return Card(
-      color: color,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16.0),
-      ),
-      child: ListTile(
-        onTap: () {
-          // Navigasi ke halaman detail saat kartu diklik
-          Get.to(() => DetailHistoryView(
-                title: title,
-                description: description,
-              ));
+      body: StreamBuilder<QuerySnapshot<Object?>>(
+        stream: controller.streamHistory(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.active) {
+            var listAllDocs = snapshot.data?.docs ?? [];
+            return listAllDocs.isNotEmpty
+                ? ListView.builder(
+                    itemCount: listAllDocs.length,
+                    padding: const EdgeInsets.all(8),
+                    itemBuilder: (context, index) {
+                      var data =
+                          listAllDocs[index].data() as Map<String, dynamic>;
+                      return Card(
+                        elevation: 3,
+                        margin: const EdgeInsets.symmetric(vertical: 8),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: ListTile(
+                          contentPadding: const EdgeInsets.all(16),
+                          title: Text(
+                            "${data["nama_makanan"]}",
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const SizedBox(height: 8),
+                              Text(
+                                "Protein: ${data["jumlah"]}",
+                                style: const TextStyle(fontSize: 16),
+                              ),
+                              Text(
+                                "Berat: ${data["berat"]} kg",
+                                style: const TextStyle(fontSize: 16),
+                              ),
+                              Text(
+                                "Kategori: ${data["kategori"]}",
+                                style: const TextStyle(fontSize: 16),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  )
+                : const Center(
+                    child: Text(
+                      "Belum ada riwayat makanan",
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  );
+          }
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
         },
-        leading: CircleAvatar(
-          backgroundColor: Colors.white,
-          child: Icon(icon, color: Colors.black),
-        ),
-        title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
-        subtitle: Text(description),
-        trailing: const Icon(Icons.arrow_forward_ios),
       ),
     );
   }

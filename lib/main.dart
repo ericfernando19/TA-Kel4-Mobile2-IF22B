@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:myapp/app/controllers/auth_controller.dart';
+import 'package:myapp/app/modules/history/controllers/history_controller.dart';
 import 'package:myapp/app/modules/input/controllers/input_controller.dart';
 import 'package:myapp/app/utils/loading.dart';
 
@@ -21,6 +22,7 @@ void main() async {
   // Inisialisasi InputController
   Get.put(InputController(), permanent: true); // Inisialisasi InputController
 
+   Get.lazyPut<HistoryController>(() => HistoryController());
   runApp(MyApp());
 }
 
