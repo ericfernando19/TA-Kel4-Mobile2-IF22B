@@ -7,36 +7,49 @@ import '../controllers/input_controller.dart';
 
 class InputView extends GetView<InputController> {
   void showOption(String id) async {
-    var result = await Get.dialog(
+    await Get.dialog(
       SimpleDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        backgroundColor: Colors.white,
+        title: Text('Menu Options',
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green)),
         children: [
           ListTile(
             onTap: () {
               Get.back();
-              // Pastikan id yang diteruskan tidak null
               if (id.isNotEmpty) {
-                Get.to(
-                  InputUpdateView(),
-                  arguments: id, // Pastikan ID valid
-                  transition:
-                      Transition.rightToLeftWithFade, // Animasi transisi
-                );
+                Get.to(InputUpdateView(),
+                    arguments: id, transition: Transition.rightToLeftWithFade);
               } else {
                 Get.snackbar("Error", "ID tidak valid.");
               }
             },
-            title: Text('Update'),
+            leading: Tooltip(
+              message: 'Edit food data',
+              child: Icon(Icons.edit_note, color: Colors.blue, size: 28),
+            ),
+            title: Text('Update Data',
+                style: TextStyle(fontWeight: FontWeight.w500)),
           ),
           ListTile(
             onTap: () {
               Get.back();
-              controller.delete(id); // Menghapus data berdasarkan id
+              controller.delete(id);
             },
-            title: Text('Delete'),
+            leading: Tooltip(
+              message: 'Delete food data',
+              child: Icon(Icons.delete_outline, color: Colors.red, size: 28),
+            ),
+            title: Text('Delete Data',
+                style: TextStyle(fontWeight: FontWeight.w500)),
           ),
           ListTile(
             onTap: () => Get.back(),
-            title: Text('Close'),
+            leading: Tooltip(
+              message: 'Close menu',
+              child: Icon(Icons.close, color: Colors.grey, size: 28),
+            ),
+            title: Text('Close', style: TextStyle(fontWeight: FontWeight.w500)),
           ),
         ],
       ),
@@ -48,93 +61,215 @@ class InputView extends GetView<InputController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Input View'),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.restaurant_menu, color: Colors.white),
+            SizedBox(width: 8),
+            Text('Tambah Protein',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
+                )),
+          ],
+        ),
         centerTitle: true,
-        backgroundColor:
-            const Color.fromARGB(255, 0, 255, 8), // Mengganti warna AppBar
+        elevation: 0,
+        backgroundColor: Colors.green,
       ),
-      body: StreamBuilder<QuerySnapshot<Object?>>(
-        stream: controller.StreamData(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.active) {
-            var listAllDocs = snapshot.data?.docs ?? [];
-            return listAllDocs.isNotEmpty
-                ? ListView.builder(
-                    itemCount: listAllDocs.length,
-                    itemBuilder: (context, index) {
-                      var data =
-                          listAllDocs[index].data() as Map<String, dynamic>;
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: Card(
-                          elevation: 5,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          color: Colors.white,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Colors.green.withOpacity(0.1), Colors.white],
+          ),
+        ),
+        child: StreamBuilder<QuerySnapshot<Object?>>(
+          stream: controller.StreamData(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.active) {
+              var listAllDocs = snapshot.data?.docs ?? [];
+              return listAllDocs.isNotEmpty
+                  ? ListView.builder(
+                      padding: EdgeInsets.all(16),
+                      itemCount: listAllDocs.length,
+                      itemBuilder: (context, index) {
+                        var data =
+                            listAllDocs[index].data() as Map<String, dynamic>;
+                        return Tooltip(
+                          message: 'Tap for more options',
                           child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(16),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.2),
-                                  blurRadius: 5,
-                                  spreadRadius: 2,
+                            margin: EdgeInsets.only(bottom: 16),
+                            child: Card(
+                              elevation: 4,
+                              shadowColor: Colors.green.withOpacity(0.2),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Container(
+                                padding: EdgeInsets.all(16),
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Container(
+                                          width: 60,
+                                          height: 60,
+                                          decoration: BoxDecoration(
+                                            color:
+                                                Colors.green.withOpacity(0.1),
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              '${index + 1}',
+                                              style: TextStyle(
+                                                fontSize: 24,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.green,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(width: 16),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "${data["nama_makanan"]}",
+                                                style: TextStyle(
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.green.shade800,
+                                                ),
+                                              ),
+                                              SizedBox(height: 4),
+                                              Text(
+                                                "Food Category",
+                                                style: TextStyle(
+                                                  color: Colors.grey,
+                                                  fontSize: 12,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        IconButton(
+                                          onPressed: () =>
+                                              showOption(listAllDocs[index].id),
+                                          icon: Icon(Icons.more_vert),
+                                          color: Colors.green,
+                                          tooltip: 'More options',
+                                        ),
+                                      ],
+                                    ),
+                                    Divider(height: 24),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        _buildInfoItem(
+                                          Icons.scale_outlined,
+                                          "${data["berat"]} kg",
+                                          'Weight',
+                                        ),
+                                        _buildInfoItem(
+                                          Icons.egg_outlined,
+                                          "${data["jumlah"]}g",
+                                          'Protein',
+                                        ),
+                                        _buildInfoItem(
+                                          Icons.category_outlined,
+                                          "${data["kategory"]}",
+                                          'Category',
+                                        ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
-                            child: ListTile(
-                              leading: CircleAvatar(
-                                child: Text('${index + 1}'),
-                                backgroundColor:
-                                    Color.fromARGB(255, 248, 248, 248),
-                              ),
-                              title: Text(
-                                "${data["nama_makanan"]}",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                ),
-                              ),
-                              subtitle: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(height: 4),
-                                  Text("Berat: ${data["berat"]} kg"),
-                                  Text("Jumlah Protein: ${data["jumlah"]}"),
-                                  Text("Kategori: ${data["kategory"]}"),
-                                ],
-                              ),
-                              trailing: IconButton(
-                                onPressed: () =>
-                                    showOption(listAllDocs[index].id),
-                                icon: Icon(Icons.more_vert),
-                                color: Colors.black,
                               ),
                             ),
                           ),
-                        ),
-                      );
-                    },
-                  )
-                : Center(
-                    child: Text("Data Kosong", style: TextStyle(fontSize: 18)),
-                  );
-          }
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        },
+                        );
+                      },
+                    )
+                  : Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.no_meals_outlined,
+                              size: 80, color: Colors.green.withOpacity(0.5)),
+                          SizedBox(height: 16),
+                          Text(
+                            "No Food Data Available",
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.green.shade800,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          SizedBox(height: 8),
+                          Text(
+                            "Add your first food item",
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+            }
+            return Center(
+              child: CircularProgressIndicator(
+                color: Colors.green,
+                strokeWidth: 3,
+              ),
+            );
+          },
+        ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Navigasi ke halaman InputAddView tanpa membawa argumen
-          Get.to(InputAddView(), transition: Transition.fadeIn);
-        },
-        child: Icon(Icons.add),
-        backgroundColor: const Color.fromARGB(
-            255, 0, 255, 8), // Mengganti warna tombol Add ke Hijau
-        tooltip: 'Add New Item',
+      floatingActionButton: Tooltip(
+        message: 'Add new food item',
+        child: FloatingActionButton.extended(
+          onPressed: () =>
+              Get.to(InputAddView(), transition: Transition.fadeIn),
+          label:
+              Text('Add Food', style: TextStyle(fontWeight: FontWeight.bold)),
+          icon: Icon(Icons.add_circle_outline),
+          backgroundColor: Colors.green,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildInfoItem(IconData icon, String value, String label) {
+    return Tooltip(
+      message: label,
+      child: Column(
+        children: [
+          Icon(icon, color: Colors.green.shade700),
+          SizedBox(height: 4),
+          Text(
+            value,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.green.shade800,
+            ),
+          ),
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 12,
+              color: Colors.grey,
+            ),
+          ),
+        ],
       ),
     );
   }
