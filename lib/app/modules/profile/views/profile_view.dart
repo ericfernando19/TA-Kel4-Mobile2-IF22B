@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/profile_controller.dart';
-import 'ubah_add_view.dart'; // Import halaman UbahPasswordView
 
 class ProfileView extends GetView<ProfileController> {
   const ProfileView({super.key});
@@ -17,7 +16,6 @@ class ProfileView extends GetView<ProfileController> {
       ),
       body: Column(
         children: [
-          // Header
           Container(
             padding: const EdgeInsets.all(16.0),
             decoration: const BoxDecoration(
@@ -31,8 +29,7 @@ class ProfileView extends GetView<ProfileController> {
               children: [
                 CircleAvatar(
                   radius: 40,
-                  backgroundImage: NetworkImage(
-                      'https://via.placeholder.com/150'), // Ganti dengan URL gambar Anda
+                  backgroundImage: NetworkImage('https://via.placeholder.com/150'),
                 ),
                 SizedBox(width: 16),
                 Column(
@@ -58,65 +55,32 @@ class ProfileView extends GetView<ProfileController> {
               ],
             ),
           ),
-
-          // Menu items
           Expanded(
             child: ListView(
+              padding: const EdgeInsets.all(16),
               children: [
                 _buildMenuItem(
-                  icon: Icons.person,
+                  icon: Icons.person_outline,
                   title: 'Edit Data Diri',
-                  onTap: () {
-                    // Aksi untuk Edit Data Diri
-                  },
+                  onTap: () {},
                 ),
                 _buildMenuItem(
-                  icon: Icons.lock,
+                  icon: Icons.lock_outline,
                   title: 'Ubah Password',
-                  onTap: () {
-                    // Navigasi ke halaman Ubah Password
-                    Get.to(() => const UbahAddView());
-                  },
+                  onTap: () {},
                 ),
-                _buildMenuItem(
-                  icon: Icons.star,
-                  title: 'Beri Rating Aplikasi',
-                  onTap: () {
-                    // Aksi untuk Beri Rating
-                  },
-                ),
-                _buildMenuItem(
-                  icon: Icons.phone,
-                  title: 'Kontak Kami',
-                  onTap: () {
-                    // Aksi untuk Kontak Kami
-                  },
-                ),
-                _buildMenuItem(
-                  icon: Icons.info,
-                  title: 'Ketentuan Layanan & Kebijakan Privasi',
-                  onTap: () {
-                    // Aksi untuk Ketentuan Layanan
-                  },
+                const SizedBox(height: 24),
+                TextButton(
+                  onPressed: () {},
+                  child: const Text(
+                    'LOG OUT',
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
               ],
-            ),
-          ),
-
-          // Logout button
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: TextButton(
-              onPressed: () {
-                // Tambahkan logika logout di sini
-              },
-              child: const Text(
-                'LOG OUT',
-                style: TextStyle(
-                  color: Colors.red,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
             ),
           ),
         ],
@@ -129,11 +93,14 @@ class ProfileView extends GetView<ProfileController> {
     required String title,
     required VoidCallback onTap,
   }) {
-    return ListTile(
-      leading: Icon(icon, color: Colors.grey[700]),
-      title: Text(title),
-      trailing: const Icon(Icons.chevron_right, color: Colors.grey),
-      onTap: onTap,
+    return Card(
+      margin: const EdgeInsets.only(bottom: 8),
+      child: ListTile(
+        leading: Icon(icon, color: Colors.green),
+        title: Text(title),
+        trailing: const Icon(Icons.chevron_right, color: Colors.grey),
+        onTap: onTap,
+      ),
     );
   }
 }
