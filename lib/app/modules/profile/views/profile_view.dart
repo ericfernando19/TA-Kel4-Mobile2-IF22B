@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/profile_controller.dart';
-import 'ubah_add_view.dart';
 
 class ProfileView extends GetView<ProfileController> {
   const ProfileView({super.key});
@@ -30,8 +29,7 @@ class ProfileView extends GetView<ProfileController> {
               children: [
                 CircleAvatar(
                   radius: 40,
-                  backgroundImage:
-                      NetworkImage('https://via.placeholder.com/150'),
+                  backgroundImage: NetworkImage('https://via.placeholder.com/150'),
                 ),
                 SizedBox(width: 16),
                 Column(
@@ -69,7 +67,7 @@ class ProfileView extends GetView<ProfileController> {
                 _buildMenuItem(
                   icon: Icons.lock_outline,
                   title: 'Ubah Password',
-                  onTap: () {},
+                  onTap: () => _showChangePasswordDialog(context),
                 ),
                 const SizedBox(height: 24),
                 TextButton(
@@ -124,6 +122,56 @@ class ProfileView extends GetView<ProfileController> {
             TextField(
               decoration: const InputDecoration(
                 labelText: 'ID',
+                border: OutlineInputBorder(),
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Batal'),
+          ),
+          ElevatedButton(
+            onPressed: () => Navigator.pop(context),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.green,
+            ),
+            child: const Text('Simpan'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showChangePasswordDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Ubah Password'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(
+              obscureText: true,
+              decoration: const InputDecoration(
+                labelText: 'Password Lama',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 16),
+            TextField(
+              obscureText: true,
+              decoration: const InputDecoration(
+                labelText: 'Password Baru',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 16),
+            TextField(
+              obscureText: true,
+              decoration: const InputDecoration(
+                labelText: 'Konfirmasi Password Baru',
                 border: OutlineInputBorder(),
               ),
             ),
