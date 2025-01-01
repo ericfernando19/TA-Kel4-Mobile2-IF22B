@@ -169,7 +169,64 @@ class ProfileView extends GetView<ProfileController> {
   }
 
   void _showResetPasswordDialog(BuildContext context) {
-    // Reset password dialog implementation remains the same
-    // ... (previous implementation)
+    final emailController = TextEditingController();
+    
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Reset Password'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text(
+              'Masukan email Anda untuk menerima link reset password',
+              style: TextStyle(color: Colors.grey),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 16),
+            TextField(
+              controller: emailController,
+              decoration: const InputDecoration(
+                labelText: 'Email',
+                border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.email_outlined),
+              ),
+              keyboardType: TextInputType.emailAddress,
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Batal'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              if (emailController.text.isNotEmpty) {
+                authController.resetPassword(emailController.text);
+                Navigator.pop(context);
+                Get.snackbar(
+                  'Sukses',
+                  'Link reset password telah dikirim ke email Anda',
+                  backgroundColor: Colors.green,
+                  colorText: Colors.white,
+                );
+              } else {
+                Get.snackbar(
+                  'Error',
+                  'Masukan Email Yang Sudah Terdaftar',
+                  backgroundColor: Colors.red,
+                  colorText: Colors.white,
+                );
+              }
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.green,
+            ),
+            child: const Text('Kirim'),
+          ),
+        ],
+      ),
+    );
   }
 }

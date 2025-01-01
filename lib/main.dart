@@ -25,7 +25,7 @@ void main() async {
 
   Get.lazyPut<HistoryController>(() => HistoryController());
 
-  Get.put(ProfileController());
+  Get.lazyPut<ProfileController>(() => ProfileController());
   runApp(MyApp());
 }
 
