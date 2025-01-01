@@ -7,6 +7,7 @@ import 'package:myapp/app/modules/input/views/input_view.dart';
 import 'package:myapp/app/modules/profile/views/profile_view.dart';
 import '../controllers/home_controller.dart';
 import '../views/protein_nabati_view.dart';
+import '../views/protein_hewani_view.dart';
 
 class MainHomeView extends GetView<HomeController> {
   final cAuth = Get.find<AuthController>();
@@ -332,7 +333,9 @@ class _HomeViewState extends State<HomeView> {
       onTap: () {
         if (title.contains('Nabati')) {
           Get.to(() => const ProteinNabatiView());
-        }
+        }else if (title.contains('Hewani')) {
+        Get.to(() => const ProteinHewaniView());
+      }
       },
       child: Container(
         decoration: BoxDecoration(
