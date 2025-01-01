@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:myapp/app/controllers/auth_controller.dart';
 import '../controllers/profile_controller.dart';
 
 class ProfileView extends GetView<ProfileController> {
-  const ProfileView({super.key});
+  ProfileView({super.key});
+  
+  final authController = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
@@ -66,12 +69,12 @@ class ProfileView extends GetView<ProfileController> {
                 ),
                 _buildMenuItem(
                   icon: Icons.lock_outline,
-                  title: 'Ubah Password',
-                  onTap: () => _showChangePasswordDialog(context),
+                  title: 'Reset Password',
+                  onTap: () => _showResetPasswordDialog(context),
                 ),
                 const SizedBox(height: 24),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () => authController.logout(),
                   child: const Text(
                     'LOG OUT',
                     style: TextStyle(
@@ -144,36 +147,30 @@ class ProfileView extends GetView<ProfileController> {
     );
   }
 
-  void _showChangePasswordDialog(BuildContext context) {
+  void _showResetPasswordDialog(BuildContext context) {
+    final emailController = TextEditingController();
+    
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Ubah Password'),
+        title: const Text('Reset Password'),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            TextField(
-              obscureText: true,
-              decoration: const InputDecoration(
-                labelText: 'Password Lama',
-                border: OutlineInputBorder(),
-              ),
+            const Text(
+              'Masukan email Anda untuk menerima link reset password',
+              style: TextStyle(color: Colors.grey),
+              textAlign: TextAlign.center,
             ),
             const SizedBox(height: 16),
             TextField(
-              obscureText: true,
+              controller: emailController,
               decoration: const InputDecoration(
-                labelText: 'Password Baru',
+                labelText: 'Email',
                 border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.email_outlined),
               ),
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              obscureText: true,
-              decoration: const InputDecoration(
-                labelText: 'Konfirmasi Password Baru',
-                border: OutlineInputBorder(),
-              ),
+              keyboardType: TextInputType.emailAddress,
             ),
           ],
         ),
@@ -183,11 +180,22 @@ class ProfileView extends GetView<ProfileController> {
             child: const Text('Batal'),
           ),
           ElevatedButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () {
+              if (emailController.text.isNotEmpty) {
+                authController.resetPassword(emailController.text);
+              } else {
+                Get.snackbar(
+                  'Error',
+                  'Masukan Email Yang Sudah Terdaftar',
+                  backgroundColor: Colors.red,
+                  colorText: Colors.white,
+                );
+              }
+            },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.green,
             ),
-            child: const Text('Simpan'),
+            child: const Text('Kirim'),
           ),
         ],
       ),
