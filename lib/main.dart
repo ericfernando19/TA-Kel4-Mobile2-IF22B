@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:myapp/app/controllers/auth_controller.dart';
 import 'package:myapp/app/modules/history/controllers/history_controller.dart';
 import 'package:myapp/app/modules/input/controllers/input_controller.dart';
+import 'package:myapp/app/modules/profile/controllers/profile_controller.dart';
 import 'package:myapp/app/utils/loading.dart';
 
 import 'app/routes/app_pages.dart';
@@ -22,7 +23,9 @@ void main() async {
   // Inisialisasi InputController
   Get.put(InputController(), permanent: true); // Inisialisasi InputController
 
-   Get.lazyPut<HistoryController>(() => HistoryController());
+  Get.lazyPut<HistoryController>(() => HistoryController());
+
+  Get.put(ProfileController());
   runApp(MyApp());
 }
 
