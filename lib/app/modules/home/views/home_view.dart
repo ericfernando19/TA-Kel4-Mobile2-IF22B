@@ -6,6 +6,7 @@ import 'package:myapp/app/modules/history/views/history_view.dart';
 import 'package:myapp/app/modules/input/views/input_view.dart';
 import 'package:myapp/app/modules/profile/views/profile_view.dart';
 import '../controllers/home_controller.dart';
+import '../views/protein_nabati_view.dart';
 
 class MainHomeView extends GetView<HomeController> {
   final cAuth = Get.find<AuthController>();
@@ -327,39 +328,46 @@ class _HomeViewState extends State<HomeView> {
 
   Widget _buildMenuCard(
       String title, IconData icon, Color backgroundColor, Color iconColor) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
-            offset: Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            padding: EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: backgroundColor,
-              borderRadius: BorderRadius.circular(12),
+    return GestureDetector(
+      onTap: () {
+        if (title.contains('Nabati')) {
+          Get.to(() => const ProteinNabatiView());
+        }
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.05),
+              blurRadius: 10,
+              offset: Offset(0, 2),
             ),
-            child: Icon(icon, color: iconColor, size: 24),
-          ),
-          SizedBox(height: 8),
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w500,
+          ],
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              padding: EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: backgroundColor,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Icon(icon, color: iconColor, size: 24),
             ),
-            textAlign: TextAlign.center,
-          ),
-        ],
+            SizedBox(height: 8),
+            Text(
+              title,
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
       ),
     );
   }
