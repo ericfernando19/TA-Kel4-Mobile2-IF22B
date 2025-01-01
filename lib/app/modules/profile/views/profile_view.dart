@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:myapp/app/controllers/auth_controller.dart';
 import '../controllers/profile_controller.dart';
+import 'package:myapp/app/routes/app_pages.dart';
 
 class ProfileView extends GetView<ProfileController> {
   ProfileView({super.key});
-  
+
   final authController = Get.find<AuthController>();
 
   @override
@@ -32,7 +33,8 @@ class ProfileView extends GetView<ProfileController> {
               children: [
                 CircleAvatar(
                   radius: 40,
-                  backgroundImage: NetworkImage('https://via.placeholder.com/150'),
+                  backgroundImage:
+                      NetworkImage('https://via.placeholder.com/150'),
                 ),
                 SizedBox(width: 16),
                 Column(
@@ -74,7 +76,9 @@ class ProfileView extends GetView<ProfileController> {
                 ),
                 const SizedBox(height: 24),
                 TextButton(
-                  onPressed: () => authController.logout(),
+                  onPressed: () {
+                    Get.offAllNamed(Routes.LOGIN);
+                  },
                   child: const Text(
                     'LOG OUT',
                     style: TextStyle(
@@ -149,7 +153,7 @@ class ProfileView extends GetView<ProfileController> {
 
   void _showResetPasswordDialog(BuildContext context) {
     final emailController = TextEditingController();
-    
+
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
