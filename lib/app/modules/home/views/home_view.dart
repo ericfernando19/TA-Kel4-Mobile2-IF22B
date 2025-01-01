@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:myapp/app/controllers/auth_controller.dart';
 import 'package:myapp/app/modules/dashboard/views/dashboard_view.dart';
 import 'package:myapp/app/modules/history/views/history_view.dart';
+import 'package:myapp/app/modules/home/views/hitung_protein_view.dart';
 import 'package:myapp/app/modules/input/views/input_view.dart';
 import 'package:myapp/app/modules/profile/views/profile_view.dart';
 import '../controllers/home_controller.dart';
@@ -335,6 +336,8 @@ class _HomeViewState extends State<HomeView> {
           Get.to(() => const ProteinNabatiView());
         }else if (title.contains('Hewani')) {
         Get.to(() => const ProteinHewaniView());
+      } else if (title.contains('Hitung')) {
+        Get.to(() => HitungProteinView());
       }
       },
       child: Container(
