@@ -30,35 +30,35 @@ class ProfileView extends GetView<ProfileController> {
               ),
             ),
             child: Obx(() => Row(
-              children: [
-                CircleAvatar(
-                  radius: 40,
-                  backgroundImage:
-                      NetworkImage('https://via.placeholder.com/150'),
-                ),
-                SizedBox(width: 16),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      controller.userName.value,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    CircleAvatar(
+                      radius: 40,
+                      backgroundImage:
+                          NetworkImage('https://via.placeholder.com/150'),
                     ),
-                    Text(
-                      controller.userId.value,
-                      style: TextStyle(
-                        color: Colors.white70,
-                        fontSize: 14,
-                      ),
+                    SizedBox(width: 16),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          controller.userName.value,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          controller.userId.value,
+                          style: TextStyle(
+                            color: Colors.white70,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
-                ),
-              ],
-            )),
+                )),
           ),
           Expanded(
             child: ListView(
@@ -73,6 +73,12 @@ class ProfileView extends GetView<ProfileController> {
                   icon: Icons.lock_outline,
                   title: 'Reset Password',
                   onTap: () => _showResetPasswordDialog(context),
+                ),
+                _buildMenuItem(
+                  icon: Icons.description_outlined,
+                  title: 'Kebijakan Layanan',
+                  onTap: () => _showTermsOfServiceDialog(
+                      context), // Tambahkan pemanggilan fungsi ini
                 ),
                 const SizedBox(height: 24),
                 TextButton(
@@ -112,7 +118,8 @@ class ProfileView extends GetView<ProfileController> {
   }
 
   void _showEditProfileDialog(BuildContext context) {
-    final nameController = TextEditingController(text: controller.userName.value);
+    final nameController =
+        TextEditingController(text: controller.userName.value);
     final idController = TextEditingController(text: controller.userId.value);
 
     showDialog(
@@ -170,7 +177,7 @@ class ProfileView extends GetView<ProfileController> {
 
   void _showResetPasswordDialog(BuildContext context) {
     final emailController = TextEditingController();
-    
+
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -229,4 +236,46 @@ class ProfileView extends GetView<ProfileController> {
       ),
     );
   }
+
+  void _showTermsOfServiceDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Kebijakan Layanan'),
+        content: SingleChildScrollView(
+        child: Text(
+  '''
+  Selamat datang di aplikasi kami! Berikut adalah kebijakan layanan yang berlaku:
+  
+  1.  Penggunaan Aplikasi:
+     - Pengguna wajib menggunakan aplikasi ini sesuai dengan hukum dan aturan yang berlaku.
+     - Dilarang menggunakan aplikasi untuk tujuan ilegal atau merugikan pihak lain.
+
+  2. Privasi Pengguna:
+     - Kami menghormati privasi Anda dan berkomitmen untuk melindungi data pribadi Anda.
+     - Informasi yang Anda berikan hanya akan digunakan untuk keperluan aplikasi ini.
+
+  3. Kewajiban Pengguna:
+     - Pengguna bertanggung jawab atas informasi yang diberikan saat menggunakan aplikasi.
+     - Harap tidak membagikan informasi yang menyesatkan atau tidak benar.
+
+  4. Perubahan Kebijakan:
+     - Kebijakan layanan ini dapat berubah sewaktu-waktu. Kami akan memberi tahu Anda melalui pembaruan aplikasi.
+
+  Dengan menggunakan aplikasi ini, Anda dianggap telah menyetujui kebijakan layanan kami.
+  ''',
+  style: const TextStyle(fontSize: 16),
+  textAlign: TextAlign.justify, // Menambahkan properti textAlign
+),
+
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Tutup'),
+          ),
+        ],
+      ),
+    ); // <-- Tambahkan titik koma disini
+  } // <-- Kurung kurawal penutup ditambahkan untuk metode
 }
