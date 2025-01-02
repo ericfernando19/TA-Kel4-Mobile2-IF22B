@@ -231,58 +231,63 @@ class _HomeViewState extends State<HomeView> {
                   // Main Content Area
                   Expanded(
                     child: Container(
-                      padding: EdgeInsets.all(24),
-                      decoration: BoxDecoration(
-                        color: Colors.grey[50],
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(30),
-                          topRight: Radius.circular(30),
-                        ),
-                      ),
-                      child: SingleChildScrollView(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Menu Utama',
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            SizedBox(height: 20),
-                            // 3 Menu Items Grid
-                            GridView.count(
-                              shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
-                              crossAxisCount: 3,
-                              mainAxisSpacing: 16,
-                              crossAxisSpacing: 16,
-                              children: [
-                                _buildMenuCard(
-                                  'Hitung\nProtein',
-                                  Icons.calculate,
-                                  Colors.blue[50]!,
-                                  Colors.blue,
-                                ),
-                                _buildMenuCard(
-                                  'Protein\nHewani',
-                                  Icons.restaurant_menu,
-                                  Colors.red[50]!,
-                                  Colors.red,
-                                ),
-                                _buildMenuCard(
-                                  'Protein\nNabati',
-                                  Icons.eco,
-                                  Colors.green[50]!,
-                                  Colors.green,
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+  padding: EdgeInsets.all(24),
+  decoration: BoxDecoration(
+    image: DecorationImage(
+      image: NetworkImage('https://akcdn.detik.net.id/visual/2023/02/01/ilustrasi-protein-hewani_169.jpeg?w=720&q=90'),
+      fit: BoxFit.cover, // Mengatur gambar agar menutupi seluruh area
+    ),
+    borderRadius: BorderRadius.only(
+      topLeft: Radius.circular(30),
+      topRight: Radius.circular(30),
+    ),
+  ),
+  child: SingleChildScrollView(
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Menu Utama',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.white, // Memberikan warna teks putih agar kontras dengan background
+          ),
+        ),
+        SizedBox(height: 20),
+        // 3 Menu Items Grid
+        GridView.count(
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          crossAxisCount: 3,
+          mainAxisSpacing: 16,
+          crossAxisSpacing: 16,
+          children: [
+            _buildMenuCard(
+              'Hitung\nProtein',
+              Icons.calculate,
+              Colors.blue[50]!,
+              Colors.blue,
+            ),
+            _buildMenuCard(
+              'Protein\nHewani',
+              Icons.restaurant_menu,
+              Colors.red[50]!,
+              Colors.red,
+            ),
+            _buildMenuCard(
+              'Protein\nNabati',
+              Icons.eco,
+              Colors.green[50]!,
+              Colors.green,
+            ),
+          ],
+        ),
+      ],
+    ),
+  ),
+)
+
                   ),
                 ],
               ),
