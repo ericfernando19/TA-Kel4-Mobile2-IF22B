@@ -23,9 +23,8 @@ class KebijakanDanPrivasi extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 16),
-             Text(
-  
-  'Kami di [Nama Aplikasi] menghargai privasi Anda dan berkomitmen untuk melindungi informasi pribadi yang Anda berikan saat menggunakan aplikasi kami. Kebijakan ini menjelaskan jenis informasi yang kami kumpulkan, bagaimana kami menggunakannya, hak Anda sehubungan dengan data pribadi Anda, serta ketentuan penggunaan aplikasi.\n\n'
+            Text(
+  'Kami menghargai privasi Anda dan berkomitmen untuk melindungi informasi pribadi yang Anda berikan saat menggunakan aplikasi kami. Kebijakan ini menjelaskan jenis informasi yang kami kumpulkan, bagaimana kami menggunakannya, hak Anda sehubungan dengan data pribadi Anda, serta ketentuan penggunaan aplikasi.\n\n'
   '1. Informasi yang Kami Kumpulkan\n'
   'Kami mengumpulkan informasi berikut saat Anda menggunakan aplikasi kami:\n'
   '- Data Pengguna: Nama, alamat email, dan informasi lainnya yang Anda berikan secara sukarela.\n'
@@ -55,7 +54,9 @@ class KebijakanDanPrivasi extends StatelessWidget {
   '10. Perubahan pada Kebijakan\n'
   'Kami berhak untuk mengubah kebijakan ini kapan saja tanpa pemberitahuan sebelumnya. Anda diharapkan untuk memeriksa kebijakan secara berkala untuk mengetahui pembaruan.',
   style: TextStyle(fontSize: 16),
+  textAlign: TextAlign.justify,
 )
+
 
             ],
           ),
