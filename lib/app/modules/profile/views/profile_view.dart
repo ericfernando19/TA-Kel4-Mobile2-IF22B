@@ -77,6 +77,11 @@ class ProfileView extends GetView<ProfileController> {
                   title: 'Reset Password',
                   onTap: () => _showResetPasswordDialog(context),
                 ),
+                   _buildMenuItem(
+        icon: Icons.description_outlined,
+        title: 'Kebijakan Layanan',
+        onTap: () => Get.to(() => const KebijakanDanPrivasi()), // Navigasi ke halaman kebijakan
+      ),
                   
                 const SizedBox(height: 24),
                 TextButton(
