@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:myapp/app/controllers/auth_controller.dart';
 import '../controllers/profile_controller.dart';
 import 'package:myapp/app/routes/app_pages.dart';
+import 'kebijakan.dart';
 
 
 
