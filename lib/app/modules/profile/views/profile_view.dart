@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:myapp/app/controllers/auth_controller.dart';
 import '../controllers/profile_controller.dart';
 import 'package:myapp/app/routes/app_pages.dart';
-import 'kebijakan.dart';
 
 
 
@@ -77,11 +76,7 @@ class ProfileView extends GetView<ProfileController> {
                   title: 'Reset Password',
                   onTap: () => _showResetPasswordDialog(context),
                 ),
-                _buildMenuItem(
-        icon: Icons.description_outlined,
-        title: 'Kebijakan Layanan',
-        onTap: () => Get.to(() => const KebijakanDanPrivasi()), // Navigasi ke halaman kebijakan
-      ),
+                  
                 const SizedBox(height: 24),
                 TextButton(
                   onPressed: () {
