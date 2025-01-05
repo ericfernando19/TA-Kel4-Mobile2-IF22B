@@ -3,6 +3,9 @@ import 'package:get/get.dart';
 import 'package:myapp/app/controllers/auth_controller.dart';
 import '../controllers/profile_controller.dart';
 import 'package:myapp/app/routes/app_pages.dart';
+import 'kebijakan.dart';
+
+
 
 class ProfileView extends GetView<ProfileController> {
   ProfileView({super.key});
@@ -75,11 +78,10 @@ class ProfileView extends GetView<ProfileController> {
                   onTap: () => _showResetPasswordDialog(context),
                 ),
                 _buildMenuItem(
-                  icon: Icons.description_outlined,
-                  title: 'Kebijakan Layanan',
-                  onTap: () => _showTermsOfServiceDialog(
-                      context), // Tambahkan pemanggilan fungsi ini
-                ),
+        icon: Icons.description_outlined,
+        title: 'Kebijakan Layanan',
+        onTap: () => Get.to(() => const KebijakanDanPrivasi()), // Navigasi ke halaman kebijakan
+      ),
                 const SizedBox(height: 24),
                 TextButton(
                   onPressed: () {
@@ -237,45 +239,5 @@ class ProfileView extends GetView<ProfileController> {
     );
   }
 
-  void _showTermsOfServiceDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Kebijakan Layanan'),
-        content: SingleChildScrollView(
-        child: Text(
-  '''
-  Selamat datang di aplikasi kami! Berikut adalah kebijakan layanan yang berlaku:
-  
-  1.  Penggunaan Aplikasi:
-     - Pengguna wajib menggunakan aplikasi ini sesuai dengan hukum dan aturan yang berlaku.
-     - Dilarang menggunakan aplikasi untuk tujuan ilegal atau merugikan pihak lain.
-
-  2. Privasi Pengguna:
-     - Kami menghormati privasi Anda dan berkomitmen untuk melindungi data pribadi Anda.
-     - Informasi yang Anda berikan hanya akan digunakan untuk keperluan aplikasi ini.
-
-  3. Kewajiban Pengguna:
-     - Pengguna bertanggung jawab atas informasi yang diberikan saat menggunakan aplikasi.
-     - Harap tidak membagikan informasi yang menyesatkan atau tidak benar.
-
-  4. Perubahan Kebijakan:
-     - Kebijakan layanan ini dapat berubah sewaktu-waktu. Kami akan memberi tahu Anda melalui pembaruan aplikasi.
-
-  Dengan menggunakan aplikasi ini, Anda dianggap telah menyetujui kebijakan layanan kami.
-  ''',
-  style: const TextStyle(fontSize: 16),
-  textAlign: TextAlign.justify, // Menambahkan properti textAlign
-),
-
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Tutup'),
-          ),
-        ],
-      ),
-    ); // <-- Tambahkan titik koma disini
-  } // <-- Kurung kurawal penutup ditambahkan untuk metode
+ // <-- Kurung kurawal penutup ditambahkan untuk metode
 }
