@@ -7,6 +7,7 @@ import 'kebijakan.dart';
 
 
 
+
 class ProfileView extends GetView<ProfileController> {
   ProfileView({super.key});
 
@@ -82,6 +83,9 @@ class ProfileView extends GetView<ProfileController> {
         title: 'Kebijakan Layanan',
         onTap: () => Get.to(() => const KebijakanDanPrivasi()), // Navigasi ke halaman kebijakan
       ),
+
+      
+
                   
                 const SizedBox(height: 24),
                 TextButton(
