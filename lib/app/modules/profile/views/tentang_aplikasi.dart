@@ -42,3 +42,12 @@ class AboutPage extends StatelessWidget {
               
               style: TextStyle(fontSize: 16, color: Colors.black87),
             ),
+             SizedBox(height: 20),
+            Text(
+              'Fitur Utama:',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.blueAccent,
+              ),
+            ),
