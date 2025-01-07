@@ -38,7 +38,7 @@ class AboutPage extends StatelessWidget {
             ),
             SizedBox(height: 20),
             Text(
-              'Aplikasi ini dirancang untuk membantu pengguna menghitung kebutuhan protein harian mereka berdasarkan usia, jenis kelamin, dan tingkat aktivitas fisik.', 
+              'Aplikasi ini dirancang untuk membantu pengguna menghitung kebutuhan protein harian.', 
               
               style: TextStyle(fontSize: 16, color: Colors.black87),
             ),
@@ -54,9 +54,9 @@ class AboutPage extends StatelessWidget {
             SizedBox(height: 10),
             Text(
               '1. Kalkulator kebutuhan protein harian.\n'
-              '2. Penghitungan berdasarkan jenis kelamin dan tingkat aktivitas.\n'
-              '3. Rekomendasi makanan tinggi protein.\n'
-              '4. Tips dan panduan untuk meningkatkan konsumsi protein secara sehat.',
+              '2. Input Protein.\n'
+              '3. Riwayat Protein.\n'
+              '4.Informasi Protein Hewani dan Nabati.',
               style: TextStyle(fontSize: 16, color: Colors.black54),
             ),
               SizedBox(height: 20),
