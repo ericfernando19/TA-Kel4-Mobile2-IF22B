@@ -37,7 +37,7 @@ class ProfileView extends GetView<ProfileController> {
                     CircleAvatar(
                       radius: 40,
                       backgroundImage:
-                          NetworkImage('https://via.placeholder.com/150'),
+                          NetworkImage('https://cdn.pixabay.com/photo/2020/05/17/16/49/cartoon-5182543_960_720.png'),
                     ),
                     SizedBox(width: 16),
                     Column(
