@@ -59,3 +59,18 @@ class AboutPage extends StatelessWidget {
               '4. Tips dan panduan untuk meningkatkan konsumsi protein secara sehat.',
               style: TextStyle(fontSize: 16, color: Colors.black54),
             ),
+              SizedBox(height: 20),
+            Text(
+              'Pengembang: Tim Aplikasi Kesehatan',
+              style: TextStyle(
+                fontSize: 16,
+                fontStyle: FontStyle.italic,
+                color: Colors.black87,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
