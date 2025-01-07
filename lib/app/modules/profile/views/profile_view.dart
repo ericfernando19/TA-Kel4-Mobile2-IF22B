@@ -84,6 +84,12 @@ class ProfileView extends GetView<ProfileController> {
         title: 'Kebijakan Layanan',
         onTap: () => Get.to(() => const KebijakanDanPrivasi()), // Navigasi ke halaman kebijakan
       ),
+      _buildMenuItem(
+  icon: Icons.description_outlined,
+  title: 'Tentang Aplikasi',
+  onTap: () => Get.to(() => AboutPage()), // Hapus 'const' di sini
+),
+
 
       
 
