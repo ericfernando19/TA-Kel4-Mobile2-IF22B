@@ -51,3 +51,11 @@ class AboutPage extends StatelessWidget {
                 color: Colors.blueAccent,
               ),
             ),
+            SizedBox(height: 10),
+            Text(
+              '1. Kalkulator kebutuhan protein harian.\n'
+              '2. Penghitungan berdasarkan jenis kelamin dan tingkat aktivitas.\n'
+              '3. Rekomendasi makanan tinggi protein.\n'
+              '4. Tips dan panduan untuk meningkatkan konsumsi protein secara sehat.',
+              style: TextStyle(fontSize: 16, color: Colors.black54),
+            ),
