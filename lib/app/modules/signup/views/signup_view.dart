@@ -8,7 +8,7 @@ class SignupView extends GetView<SignupController> {
   final cAuth = Get.find<AuthController>();
 
   SignupView({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,8 +29,8 @@ class SignupView extends GetView<SignupController> {
               Center(
                 child: Image.asset(
                   '../assets/images/protein.jpg',
-                  height: 100,
-                  width: 100,
+                  height: 200,
+                  width: 200,
                 ),
               ),
               const SizedBox(height: 20),
