@@ -30,8 +30,8 @@ class LoginView extends GetView<LoginController> {
               Center(
                 child: Image.asset(
                   '../assets/images/protein.jpg', // Ganti dengan path gambar lokal
-                  height: 100,
-                  width: 100,
+                  height: 200,
+                  width: 200,
                 ),
               ),
               const SizedBox(height: 50),
